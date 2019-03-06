@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='utf-8'?><wsdl:definitions name="RobotWebServiceImplService" targetNamespace="http://localhost:8080/soap/daemo1/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost:8080/soap/daemo1/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://localhost:8080/soap/daemo1/" xmlns:tns="http://localhost:8080/soap/daemo1/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:complexType name="standPointInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="POINTDES" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="STANDPOINT" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="STOR_TYPE" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="WH_NO" type="xs:string"></xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="webServiceResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="INFO" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="STATUS" type="xs:string"></xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="taskResultInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="EXEC_STATE" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="PICTURE" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="TASK_NO" type="xs:string"></xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="inventoryResultInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="CCDD" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="CCLX" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="CKH" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="CW" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="GC" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="KCLX" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="KCSL" type="xs:double"></xs:element>
+                    <xs:element minOccurs="0" name="PC" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="PDCY" type="xs:double"></xs:element>
+                    <xs:element minOccurs="0" name="PDSJ" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="PDSL" type="xs:double"></xs:element>
+                    <xs:element minOccurs="0" name="RWH" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="TSKCBH" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="TSKCLX" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="WLBH" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="WZSFM" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="ZHXM" type="xs:string"></xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType final="#all" name="standPointInfoArray">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:standPointInfo"></xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType final="#all" name="inventoryResultInfoArray">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:inventoryResultInfo"></xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Exception" type="tns:Exception"></xs:element>
+            <xs:complexType name="Exception">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="receiveInventoryResult">
+        <wsdl:part name="InventoryResult" type="tns:inventoryResultInfoArray">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="receiveTaskResult">
+        <wsdl:part name="TaskResultInfo" type="tns:taskResultInfo">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="receiveStandPointInfoResponse">
+        <wsdl:part name="return" type="tns:webServiceResult">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="receiveInventoryResultResponse">
+        <wsdl:part name="return" type="tns:webServiceResult">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="receiveTaskResultResponse">
+        <wsdl:part name="return" type="tns:webServiceResult">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="receiveStandPointInfo">
+        <wsdl:part name="StandPointInfos" type="tns:standPointInfoArray">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="Exception">
+        <wsdl:part element="tns:Exception" name="Exception">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="RobotWebService">
+        <wsdl:operation name="receiveStandPointInfo">
+            <wsdl:input message="tns:receiveStandPointInfo" name="receiveStandPointInfo"></wsdl:input>
+            <wsdl:output message="tns:receiveStandPointInfoResponse" name="receiveStandPointInfoResponse"></wsdl:output>
+            <wsdl:fault message="tns:Exception" name="Exception"></wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="receiveTaskResult">
+            <wsdl:input message="tns:receiveTaskResult" name="receiveTaskResult"></wsdl:input>
+            <wsdl:output message="tns:receiveTaskResultResponse" name="receiveTaskResultResponse"></wsdl:output>
+            <wsdl:fault message="tns:Exception" name="Exception"></wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="receiveInventoryResult">
+            <wsdl:input message="tns:receiveInventoryResult" name="receiveInventoryResult">
+            </wsdl:input>
+            <wsdl:output message="tns:receiveInventoryResultResponse" name="receiveInventoryResultResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:Exception" name="Exception">
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="RobotWebServiceImplServiceSoapBinding" type="tns:RobotWebService">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+        <wsdl:operation name="receiveStandPointInfo">
+            <soap:operation soapAction="" style="rpc"></soap:operation>
+            <wsdl:input name="receiveStandPointInfo"><soap:body namespace="http://localhost:8080/soap/daemo1/" use="literal"></soap:body></wsdl:input>
+            <wsdl:output name="receiveStandPointInfoResponse"><soap:body namespace="http://localhost:8080/soap/daemo1/" use="literal"></soap:body></wsdl:output>
+            <wsdl:fault name="Exception"><soap:fault name="Exception" use="literal"></soap:fault></wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="receiveInventoryResult">
+            <soap:operation soapAction="" style="rpc"></soap:operation>
+            <wsdl:input name="receiveInventoryResult">
+                <soap:body namespace="http://localhost:8080/soap/daemo1/" use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="receiveInventoryResultResponse">
+                <soap:body namespace="http://localhost:8080/soap/daemo1/" use="literal"></soap:body>
+            </wsdl:output>
+            <wsdl:fault name="Exception">
+                <soap:fault name="Exception" use="literal"></soap:fault>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="receiveTaskResult">
+            <soap:operation soapAction="" style="rpc"></soap:operation>
+            <wsdl:input name="receiveTaskResult">
+                <soap:body namespace="http://localhost:8080/soap/daemo1/" use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="receiveTaskResultResponse">
+                <soap:body namespace="http://localhost:8080/soap/daemo1/" use="literal"></soap:body>
+            </wsdl:output>
+            <wsdl:fault name="Exception">
+                <soap:fault name="Exception" use="literal"></soap:fault>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="RobotWebServiceImplService">
+        <wsdl:port binding="tns:RobotWebServiceImplServiceSoapBinding" name="RobotWebServiceImplPort">
+            <soap:address location="http://soap.cn/service.php"></soap:address>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

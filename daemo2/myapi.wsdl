@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<definitions name="soap" targetNamespace="urn:soap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:soap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<types xmlns="http://schemas.xmlsoap.org/wsdl/" />
+<portType name="soapPort"><operation name="HelloWorld">
+<input message="tns:HelloWorldRequest" />
+<output message="tns:HelloWorldResponse" />
+</operation>
+<operation name="Add">
+<input message="tns:AddRequest" />
+<output message="tns:AddResponse" />
+</operation>
+<operation name="Bdd">
+<input message="tns:BddRequest" />
+<output message="tns:BddResponse" />
+</operation>
+</portType>
+<binding name="soapBinding" type="tns:soapPort">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+<operation name="HelloWorld">
+<soap:operation soapAction="urn:soap#myapi#HelloWorld" />
+<input><soap:body use="encoded" namespace="urn:soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="Add">
+<soap:operation soapAction="urn:soap#myapi#Add" />
+<input><soap:body use="encoded" namespace="urn:soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="Bdd">
+<soap:operation soapAction="urn:soap#myapi#Bdd" />
+<input><soap:body use="encoded" namespace="urn:soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+</binding>
+<service name="soap">
+<documentation />
+<port name="soapPort" binding="tns:soapBinding"><soap:address location="http://localhost:8080/soap/daemo2/creat_wsdl.php" />
+</port>
+</service>
+<message name="HelloWorldRequest">
+</message>
+<message name="HelloWorldResponse">
+<part name="HelloWorld" type="xsd:string" />
+</message>
+<message name="AddRequest">
+<part name="a" type="xsd:string" />
+</message>
+<message name="AddResponse">
+<part name="Add" type="xsd:string" />
+</message>
+<message name="BddRequest">
+<part name="a" type="xsd:string" />
+</message>
+<message name="BddResponse">
+<part name="Bdd" type="xsd:string" />
+</message>
+</definitions>
